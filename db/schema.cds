@@ -5,7 +5,7 @@ entity Items : managed, cuid {
     key UUID: UUID;
     ItemName: String;
     ItemDescription: String;
-    ListingExpDate: String;
+    ListingExpDate: Date;
     Status: String;
     InStock: Integer;
     Category: Association to Categories;
