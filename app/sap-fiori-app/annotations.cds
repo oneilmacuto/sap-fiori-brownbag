@@ -111,16 +111,70 @@ annotate service.Items with @(
                 width : '100%',
             },
         },
+        {
+            $Type : 'UI.DataField',
+            Value : Seller.SellerName,
+            Label: 'Seller Name',
+            ![@HTML5.CssDefaults] : {
+                $Type : 'HTML5.CssDefaultsType',
+                width : '100%',
+            },
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Seller.Region,
+            Label: 'Region Code',
+            ![@HTML5.CssDefaults] : {
+                $Type : 'HTML5.CssDefaultsType',
+                width : '100%',
+            },
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Category.Category,
+            Label: 'Category',
+            ![@HTML5.CssDefaults] : {
+                $Type : 'HTML5.CssDefaultsType',
+                width : '100%',
+            },
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Category.CategoryDescription,
+            Label: 'Category Description',
+            ![@HTML5.CssDefaults] : {
+                $Type : 'HTML5.CssDefaultsType',
+                width : '100%',
+            },
+        },
     ],
     UI.SelectionFields  : [
-        // declare fields for filtering
         Category_Category,
-        Seller_SellerName
+        Seller_SellerName,
+        Status,
     ],
 
 );
 
 // Field-level annotations
+
+annotate service.Items with {
+    Status @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        CollectionPath : 'Status',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                LocalDataProperty : Status,
+                ValueListProperty : 'StatusName',
+            },
+        ],
+    };
+    Status @Common.ValueListWithFixedValues;
+};
+
+
+
 annotate service.Items with {
     Category @Common.ValueList : {
         $Type : 'Common.ValueListType',
@@ -134,13 +188,10 @@ annotate service.Items with {
             {
                 $Type : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'CategoryDescription',
-            },
-            {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'CategoryRank',
-            },
+            }
         ],
-    }
+    };
+    Category @title : 'Category'
 };
 
 annotate service.Items with {
@@ -166,7 +217,8 @@ annotate service.Items with {
                 ValueListProperty : 'JoiningDate',
             },
         ],
-    }
+    };
+    Seller @title : 'Seller'
 };
 
 annotate service.Items with {
@@ -197,5 +249,17 @@ annotate service.Items with {
             },
         ],
     }
+};
+
+annotate service.Categories with {
+    Category @title : 'Category Name';
+    CategoryDescription @title : 'Description'
+};
+
+annotate service.Seller with {
+    SellerName @title : 'Seller Name';
+    SellerDescription @title : 'Description';
+    Region @title : 'Region';
+    JoiningDate @title : 'Joining Date';
 };
 
