@@ -7,17 +7,17 @@ annotate service.Items with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'ItemName',
+                Label : 'Item Name',
                 Value : ItemName,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'ItemDescription',
+                Label : 'Item Description',
                 Value : ItemDescription,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'ListingExpDate',
+                Label : 'Expiration Date',
                 Value : ListingExpDate,
             },
             {
@@ -27,33 +27,58 @@ annotate service.Items with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'InStock',
+                Label : 'In Stock',
                 Value : InStock,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Category_Category',
+                Label : 'Category',
                 Value : Category_Category,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Seller_SellerName',
+                Label : 'Seller',
                 Value : Seller_SellerName,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'CountryOrigin_Country',
+                Label : 'Country',
                 Value : CountryOrigin_Country,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'TotalSales',
+                Label : 'Total Sales',
                 Value : TotalSales,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'SalesPastMonth',
+                Label : 'Sales Pas Month',
                 Value : SalesPastMonth,
+            },
+        ],
+    },
+    UI.FieldGroup #SellerInfo : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : Seller.SellerName,
+                Label: 'Seller Name'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Seller.SellerDescription,
+                Label: 'Seller Description'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Seller.Region,
+                Label: 'Region'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Seller.JoiningDate,
+                Label: 'Joining Date'
             },
         ],
     },
@@ -61,8 +86,18 @@ annotate service.Items with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : 'Item Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#SellerInfo',
+            Label: 'Seller Information',
+            ID: 'SellerInfoId1'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.LineItem#CategoriesTable',
         },
     ],
     UI.LineItem : [
@@ -148,13 +183,60 @@ annotate service.Items with @(
             },
         },
     ],
+    UI.LineItem #CategoriesTable: [
+        {
+            $Type : 'UI.DataField',
+            Value : Category.Category,
+            Label : 'Category',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Category.CategoryDescription
+        },
+    ],
     UI.SelectionFields  : [
         Category_Category,
         Seller_SellerName,
         Status,
     ],
+    UI.HeaderInfo  : {
+        $Type : 'UI.HeaderInfoType',
+        TypeName : 'Item',
+        TypeNamePlural : 'Items',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : ItemName,
+            Label: 'Item Name'
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : ItemDescription,
+            Label: 'Item Description'
+        },
+    },
 
 );
+
+annotate service.Categories with @(
+    UI.LineItem #CategoriesTable: [
+        {
+            $Type : 'UI.DataField',
+            Value : Category,
+            Label: 'Category'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CategoryDescription,
+            Label: 'Category Description'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CategoryRank,
+            Label: 'Category Rank'
+        },
+    ]
+);
+
 
 // Field-level annotations
 
