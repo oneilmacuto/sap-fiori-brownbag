@@ -158,6 +158,7 @@ annotate service.Items with @(
                 $Type : 'HTML5.CssDefaultsType',
                 width: '100%'
             },
+            Criticality : StatusCriticality,
         },
         {
             $Type : 'UI.DataField',

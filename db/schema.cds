@@ -13,6 +13,8 @@ entity Items : managed, cuid {
     CountryOrigin: Association to Countries;
     TotalSales: Integer;
     SalesPastMonth: Integer;
+    Trend: String;
+    StatusCriticality: Integer;
 }
 
 entity Categories : managed {

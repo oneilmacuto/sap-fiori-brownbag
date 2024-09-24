@@ -21,8 +21,8 @@ service CatalogService {
     )
     as projection on my.Items;
     annotate Items with @odata.draft.enabled;
-    entity Categories as projection on my.Categories;
-    entity Seller as projection on my.Seller;
-    entity Countries as projection on my.Countries;
-    entity Status as projection on my.Status;
+    @readonly entity Categories as projection on my.Categories;
+    @readonly entity Seller as projection on my.Seller;
+    @readonly entity Countries as projection on my.Countries;
+    @readonly entity Status as projection on my.Status;
 }
