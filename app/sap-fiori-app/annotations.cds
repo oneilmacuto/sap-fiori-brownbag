@@ -82,6 +82,26 @@ annotate service.Items with @(
             },
         ],
     },
+    UI.FieldGroup #CategoryInfo : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : Category.Category,
+                Label: 'Category'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Category.CategoryDescription,
+                Label: 'Category Description'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Category.CategoryRank,
+                Label: 'Category Rank'
+            },
+        ],
+    },
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -97,7 +117,9 @@ annotate service.Items with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Target : '@UI.LineItem#CategoriesTable',
+            Target : '@UI.FieldGroup#CategoryInfo',
+            Label: 'Category Information',
+            ID: 'CategoryInfoId1'
         },
     ],
     UI.LineItem : [
@@ -182,16 +204,10 @@ annotate service.Items with @(
                 width : '100%',
             },
         },
-    ],
-    UI.LineItem #CategoriesTable: [
         {
             $Type : 'UI.DataField',
-            Value : Category.Category,
-            Label : 'Category',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : Category.CategoryDescription
+            Value : SalesPastMonth,
+            Label : 'Sales Past Month',
         },
     ],
     UI.SelectionFields  : [
@@ -218,7 +234,7 @@ annotate service.Items with @(
 );
 
 annotate service.Categories with @(
-    UI.LineItem #CategoriesTable: [
+    UI.LineItem: [
         {
             $Type : 'UI.DataField',
             Value : Category,
